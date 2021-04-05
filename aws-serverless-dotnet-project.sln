@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "src\HelloWorld\HelloWorld.csproj", "{8062D17E-A255-4157-9669-DE16B06B58C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.Tests", "test\HelloWorld.Test\HelloWorld.Tests.csproj", "{4ADEC599-C69C-4924-96AA-C9B8ADA7B278}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CBF2F25C-9FCC-4969-A5BF-B38A745F9033}"
+ProjectSection(SolutionItems) = preProject
+	.gitignore = .gitignore
+	omnisharp.json = omnisharp.json
+	README.md = README.md
+	template.yaml = template.yaml
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8062D17E-A255-4157-9669-DE16B06B58C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8062D17E-A255-4157-9669-DE16B06B58C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8062D17E-A255-4157-9669-DE16B06B58C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8062D17E-A255-4157-9669-DE16B06B58C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADEC599-C69C-4924-96AA-C9B8ADA7B278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADEC599-C69C-4924-96AA-C9B8ADA7B278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADEC599-C69C-4924-96AA-C9B8ADA7B278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADEC599-C69C-4924-96AA-C9B8ADA7B278}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
