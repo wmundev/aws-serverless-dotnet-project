@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +31,8 @@ namespace HelloWorld
 
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest apigProxyEvent, ILambdaContext context)
         {
-
+            string region = Environment.GetEnvironmentVariable("SqsQueueArn");
+            context.Logger.LogLine("region" + region);
             var location = await GetCallingIP();
             var body = new Dictionary<string, string>
             {
