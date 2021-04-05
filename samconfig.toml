@@ -1,0 +1,9 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "aws-serverless-dotnet-project"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1aerx8jz6dn4r"
+s3_prefix = "aws-serverless-dotnet-project"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
