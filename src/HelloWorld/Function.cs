@@ -29,10 +29,33 @@ namespace HelloWorld
             return msg.Replace("\n","");
         }
 
+        private bool CalculatePrimeNumber(int num)
+        {
+            int m = 0;
+            m = num / 2;
+            for (int i = 2; i <= m; i++)
+            {
+                if (num % i == 0)
+                {
+                    //num is not prime
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest apigProxyEvent, ILambdaContext context)
         {
             string region = Environment.GetEnvironmentVariable("SqsQueueArn");
             context.Logger.LogLine("region" + region);
+            
+            int requestBody = int.Parse(apigProxyEvent.Body);
+
+            bool isPrime = CalculatePrimeNumber(requestBody);
+
+            context.Logger.LogLine($"Number {requestBody} prime is {isPrime.ToString()}");
+            
             var location = await GetCallingIP();
             var body = new Dictionary<string, string>
             {
