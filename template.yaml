@@ -47,11 +47,6 @@ Resources:
             ApiId: !Ref HttpApiSample
             Path: /hello
             Method: get
-        SqsEvent:
-          Type: SQS
-          Properties:
-            Queue: !GetAtt MySqsQueue.Arn
-            BatchSize: 10
 
   MySqsQueue:
     Type: AWS::SQS::Queue
