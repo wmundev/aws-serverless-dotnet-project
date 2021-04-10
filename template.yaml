@@ -14,6 +14,18 @@ Globals:
     Timeout: 29
 
 Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Delete
+    Properties:
+      BucketName: e0965cd2-e0f9-422b-8972-f418e273a325
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+        
+
   HttpApiSample:
     Type: AWS::Serverless::HttpApi
     Properties:
@@ -46,6 +58,24 @@ Resources:
           Properties:
             ApiId: !Ref HttpApiSample
             Path: /hello
+            Method: get
+
+  ApiTestFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ./src/ApiTest/
+      Handler: ApiTest::ApiTest.Function::FunctionHandler
+      Runtime: dotnetcore3.1
+      MemorySize: 256
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          SqsQueueArn: !GetAtt MySqsQueue.Arn
+      Events:
+        ApiTestEvent:
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            ApiId: !Ref HttpApiSample
+            Path: /hellofriend
             Method: get
 
   MySqsQueue:
