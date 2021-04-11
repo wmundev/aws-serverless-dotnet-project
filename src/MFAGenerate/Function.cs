@@ -1,14 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using Amazon.Lambda.Serialization.Json;
+using OtpNet;
+using System.Text.Json;
+using JsonSerializer = Amazon.Lambda.Serialization.Json.JsonSerializer;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(JsonSerializer))]
 
-namespace ApiTest
+namespace MFAGenerate
 {
     public class Function
     {
@@ -17,9 +21,14 @@ namespace ApiTest
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest apigProxyEvent,
             ILambdaContext context)
         {
+            string secretKeyString = apigProxyEvent.QueryStringParameters["secretKey"];
+            byte[] secretKeyBytes = Encoding.UTF8.GetBytes(secretKeyString);
+            var totp = new Totp(secretKeyBytes);
+            string totpNow = totp.ComputeTotp(DateTime.Now);
+            
             var body = new Dictionary<string, string>
             {
-                {"message", "hello friend"},
+                {"totpCode", totpNow}
             };
 
             return new APIGatewayProxyResponse
