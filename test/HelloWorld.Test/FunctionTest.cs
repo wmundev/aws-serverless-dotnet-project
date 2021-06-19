@@ -39,6 +39,7 @@ namespace HelloWorld.Tests
             {
                 {"message", "hello world"},
                 {"location", location},
+                {"isPrimeNumber", "True"}
             };
 
             var expectedResponse = new APIGatewayProxyResponse
@@ -64,26 +65,15 @@ namespace HelloWorld.Tests
         {
             // Arrange
             var request = new APIGatewayProxyRequest();
+            request.Body = "3";
+
             var context = new TestLambdaContext();
-            string location = GetCallingIP().Result;
-            Dictionary<string, string> body = new Dictionary<string, string>
-            {
-                {"message", "hello world"},
-                {"location", location},
-            };
-
-            var expectedResponse = new APIGatewayProxyResponse
-            {
-                Body = JsonConvert.SerializeObject(body),
-                StatusCode = 200,
-                Headers = new Dictionary<string, string> {{"Content-Type", "application/json"}}
-            };
-
             var contextMock = new Mock<ILambdaLogger>();
             context.Logger = contextMock.Object;
+
             // Act
             var function = new Function();
-            var response = await function.FunctionHandler(request, context);
+            await function.FunctionHandler(request, context);
 
             // Assert
             contextMock.Verify(logger => logger.LogLine("hello!"));
