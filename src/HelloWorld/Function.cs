@@ -47,8 +47,9 @@ namespace HelloWorld
             ILambdaContext context)
         {
             string region = Environment.GetEnvironmentVariable("SqsQueueArn");
+            context.Logger.LogLine("hello!");
             context.Logger.LogLine("region" + region);
-context.Logger.LogLine("event" + apigProxyEvent);
+            context.Logger.LogLine("event" + apigProxyEvent);
             int requestBody = int.Parse(apigProxyEvent.Body);
 
             bool isPrime = CalculatePrimeNumber(requestBody);
