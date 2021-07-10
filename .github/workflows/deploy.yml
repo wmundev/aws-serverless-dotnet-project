@@ -28,4 +28,5 @@ jobs:
         sam validate
     - name: SAM Deploy
       run: |
+        sam build
         sam deploy
