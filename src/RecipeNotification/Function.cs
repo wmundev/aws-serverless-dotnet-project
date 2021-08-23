@@ -22,7 +22,8 @@ namespace RecipeNotification
             ILambdaContext context)
         {
             var elasticsearchDomain = Environment.GetEnvironmentVariable("ElasticSearchEndpoint");
-            var esDomain = $"https://{elasticsearchDomain}";
+            // var esDomain = $"https://{elasticsearchDomain}";
+            var esDomain = $"http://{elasticsearchDomain}";
             
             var settings = new ConnectionSettings(new Uri(esDomain));
             var elasticClient = new ElasticClient(settings);
