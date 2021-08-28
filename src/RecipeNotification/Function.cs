@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.Serialization.Json;
@@ -21,21 +23,31 @@ namespace RecipeNotification
         public async Task FunctionHandler(ScheduledEvent scheduledEvent,
             ILambdaContext context)
         {
-            var elasticsearchDomain = Environment.GetEnvironmentVariable("ElasticSearchEndpoint");
-            // var esDomain = $"https://{elasticsearchDomain}";
-            var esDomain = $"http://{elasticsearchDomain}";
+            // var elasticsearchDomain = Environment.GetEnvironmentVariable("ElasticSearchEndpoint");
+            // // var esDomain = $"https://{elasticsearchDomain}";
+            // var esDomain = $"http://{elasticsearchDomain}";
+            //
+            // var settings = new ConnectionSettings(new Uri(esDomain));
+            // var elasticClient = new ElasticClient(settings);
+            // Guid guid = Guid.NewGuid();
+            // var elasticBody = new Entry
+            // {
+            //     Id = guid.ToString(),
+            //     FirstName="wowo"
+            // };
+            // var response = await elasticClient.IndexAsync(elasticBody, i => i.Index("people"));
+            // Console.WriteLine(response.IsValid);
+            // Console.WriteLine(response.DebugInformation);
             
-            var settings = new ConnectionSettings(new Uri(esDomain));
-            var elasticClient = new ElasticClient(settings);
-            Guid guid = Guid.NewGuid();
-            var elasticBody = new Entry
+            var dynamoDbClient = new AmazonDynamoDBClient();
+            var dynamoDbContext = new DynamoDBContext(dynamoDbClient);
+            var item = new DynamoExampleModel
             {
-                Id = guid.ToString(),
-                FirstName="wowo"
+                Album = "hello",
+                Artist = "nice"
             };
-            var response = await elasticClient.IndexAsync(elasticBody, i => i.Index("people"));
-            Console.WriteLine(response.IsValid);
-            Console.WriteLine(response.DebugInformation);
+
+            await dynamoDbContext.SaveAsync(item);
         }
     }
 }

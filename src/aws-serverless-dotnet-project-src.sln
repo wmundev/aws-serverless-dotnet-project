@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFAGenerate", "MFAGenerate\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeNotification", "RecipeNotification\RecipeNotification.csproj", "{D5DE6C60-682A-4CAD-A1D2-D33D5DFBFC14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendEmailCode", "SendEmailCode\SendEmailCode.csproj", "{280A327B-62AF-4D89-B559-F777A90965AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{D5DE6C60-682A-4CAD-A1D2-D33D5DFBFC14}.Release|x64.Build.0 = Release|Any CPU
 		{D5DE6C60-682A-4CAD-A1D2-D33D5DFBFC14}.Release|x86.ActiveCfg = Release|Any CPU
 		{D5DE6C60-682A-4CAD-A1D2-D33D5DFBFC14}.Release|x86.Build.0 = Release|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Debug|x64.Build.0 = Debug|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Debug|x86.Build.0 = Debug|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Release|x64.ActiveCfg = Release|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Release|x64.Build.0 = Release|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Release|x86.ActiveCfg = Release|Any CPU
+		{280A327B-62AF-4D89-B559-F777A90965AD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

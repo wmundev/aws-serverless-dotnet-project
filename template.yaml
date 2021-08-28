@@ -126,6 +126,9 @@ Resources:
       Handler: RecipeNotification::RecipeNotification.Function::FunctionHandler
       Runtime: dotnetcore3.1
       MemorySize: 256
+      Policies:
+        # Give DynamoDB Full Access to your Lambda Function
+        - AmazonDynamoDBFullAccess
       Environment: 
         Variables:
 #          ElasticSearchEndpoint: !GetAtt ElasticsearchDomain.DomainEndpoint
@@ -139,27 +142,62 @@ Resources:
 #            Name: RecipeSchedule
 #            Schedule: "cron(0 12 * * ? *)"
 
+  SendEmailCodeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/SendEmailCode/
+      Handler: SendEmailCode::SendEmailCode.Function::FunctionHandler
+      Runtime: dotnetcore3.1
+      MemorySize: 256
+      Policies:
+        # Give DynamoDB Full Access to your Lambda Function
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TableName: !Ref myDynamoDBTable
+      Events:
+        SendEmailCode:
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            ApiId: !Ref HttpApiSample
+            Path: /code
+            Method: post
+            
   myDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "Album"
-          AttributeType: "S"
-        - AttributeName: "Artist"
-          AttributeType: "S"
-#        - AttributeName: "Sales"
-#          AttributeType: "N"
-#        - AttributeName: "NumberOfSongs"
-#          AttributeType: "N"
+        - AttributeName: "Id"
+          AttributeType: "N"
       KeySchema:
-        - AttributeName: "Album"
+        - AttributeName: "Id"
           KeyType: "HASH"
-        - AttributeName: "Artist"
-          KeyType: "RANGE"
       ProvisionedThroughput:
         ReadCapacityUnits: "1"
         WriteCapacityUnits: "1"
-      TableName: "TestTableName"
+      TableName: "EmailCode"
+      
+#  myDynamoDBTable:
+#    Type: AWS::DynamoDB::Table
+#    Properties:
+#      AttributeDefinitions:
+#        - AttributeName: "Album"
+#          AttributeType: "S"
+#        - AttributeName: "Artist"
+#          AttributeType: "S"
+##        - AttributeName: "Sales"
+##          AttributeType: "N"
+##        - AttributeName: "NumberOfSongs"
+##          AttributeType: "N"
+#      KeySchema:
+#        - AttributeName: "Album"
+#          KeyType: "HASH"
+#        - AttributeName: "Artist"
+#          KeyType: "RANGE"
+#      ProvisionedThroughput:
+#        ReadCapacityUnits: "1"
+#        WriteCapacityUnits: "1"
+#      TableName: "TestTableName"
 
 #  ElasticsearchDomain:
 #    Type: AWS::Elasticsearch::Domain
