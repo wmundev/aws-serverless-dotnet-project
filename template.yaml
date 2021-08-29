@@ -149,6 +149,7 @@ Resources:
       Handler: SendEmailCode::SendEmailCode.Function::FunctionHandler
       Runtime: dotnetcore3.1
       MemorySize: 256
+      Timeout: 25
       Policies:
         # Give DynamoDB Full Access to your Lambda Function
         - AmazonDynamoDBFullAccess
@@ -162,7 +163,29 @@ Resources:
             ApiId: !Ref HttpApiSample
             Path: /code
             Method: post
-            
+
+  CheckCodeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/CheckCodeFunction/
+      Handler: CheckCodeFunction::CheckCodeFunction.Function::FunctionHandler
+      Runtime: dotnetcore3.1
+      MemorySize: 256
+      Timeout: 25
+      Policies:
+        # Give DynamoDB Full Access to your Lambda Function
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TableName: !Ref myDynamoDBTable
+      Events:
+        CheckCodeFunction:
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            ApiId: !Ref HttpApiSample
+            Path: /code
+            Method: get
+
   myDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:

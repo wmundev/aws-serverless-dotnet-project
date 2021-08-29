@@ -1,6 +1,6 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
 
-namespace SendEmailCode.model
+namespace SharedModel
 {
     [DynamoDBTable("EmailCode")]
     public class EmailCodeModel
@@ -8,5 +8,6 @@ namespace SendEmailCode.model
         [DynamoDBHashKey]
         public int Id { get; set; }
         public string Email { get; set; }
+        public int Code { get; set; }
     }
 }
