@@ -7,6 +7,19 @@ Parameters:
   StageName:
     Type: String
     Default: Prod
+  IpWhitelist:
+    Type: String
+    NoEcho: true
+  EmailSender:
+    Type: String
+    NoEcho: true
+  EmailLogin:
+    Type: String
+    NoEcho: true
+  EmailPassword:
+    Type: String
+    NoEcho: true
+    
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -156,6 +169,9 @@ Resources:
       Environment:
         Variables:
           TableName: !Ref myDynamoDBTable
+          Sender: !Ref EmailSender
+          Login: !Ref EmailLogin
+          Password: !Ref EmailPassword
       Events:
         SendEmailCode:
           Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -167,8 +183,8 @@ Resources:
   CheckCodeFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./src/CheckCodeFunction/
-      Handler: CheckCodeFunction::CheckCodeFunction.Function::FunctionHandler
+      CodeUri: ./src/CheckCode/
+      Handler: CheckCode::CheckCode.Function::FunctionHandler
       Runtime: dotnetcore3.1
       MemorySize: 256
       Timeout: 25
@@ -222,53 +238,53 @@ Resources:
 #        WriteCapacityUnits: "1"
 #      TableName: "TestTableName"
 
-#  ElasticsearchDomain:
-#    Type: AWS::Elasticsearch::Domain
-#    Properties:
-#      DomainName: 'test'
-#      ElasticsearchVersion: '7.10'
-#      ElasticsearchClusterConfig:
-#        DedicatedMasterEnabled: false
-#        InstanceCount: '1'
-#        ZoneAwarenessEnabled: false
-#        InstanceType: 't3.small.elasticsearch'
-##        DedicatedMasterType: 'm3.medium.elasticsearch'
-##        DedicatedMasterCount: '3'
-#      EBSOptions:
-#        EBSEnabled: true
-#        Iops: '0'
-#        VolumeSize: '10'
-#        VolumeType: 'gp2'
-#      AccessPolicies:
-#        Version: '2012-10-17'
-#        Statement:
-#          - Effect: 'Allow'
-#            Principal:
-#              AWS: !Join [':',['arn:aws:iam:', !Ref AWS::AccountId, 'root']]
-##              AWS: !GetAtt RecipeNotificationFunctionRole.Arn
-#            Action: 'es:*'
-#            Resource: !Join [':',["arn:aws:es", !Ref AWS::Region, !Ref AWS::AccountId, "domain/test/*" ]]            
-#          - Effect: 'Allow'
-#            Principal:
-#              AWS: '*'
-#            Action: 'es:*'
-#            Resource: !Join [':',["arn:aws:es", !Ref AWS::Region, !Ref AWS::AccountId, "domain/test/*" ]]
-#            Condition:
-#              IpAddress:
-#                'aws:SourceIp':
-#                  - 2.2.2.2/32
-##      LogPublishingOptions:
-##        ES_APPLICATION_LOGS:
-##          CloudWatchLogsLogGroupArn: 'arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-application-logs'
-##          Enabled: true
-##        SEARCH_SLOW_LOGS:
-##          CloudWatchLogsLogGroupArn: 'arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs'
-##          Enabled: true
-##        INDEX_SLOW_LOGS:
-##          CloudWatchLogsLogGroupArn: 'arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-index-slow-logs'
-##          Enabled: true
+  OpenSearchServiceDomain:
+    Type: AWS::OpenSearchService::Domain
+    Properties:
+      DomainName: 'test'
+      EngineVersion: 'OpenSearch_1.0'
+      ClusterConfig:
+        DedicatedMasterEnabled: false
+        InstanceCount: '1'
+        ZoneAwarenessEnabled: false
+        InstanceType: 't3.small.search'
+#        DedicatedMasterType: 'm3.medium.search'
+#        DedicatedMasterCount: '3'
+      EBSOptions:
+        EBSEnabled: true
+        VolumeSize: '10'
+        VolumeType: 'gp2'
+      AccessPolicies:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              AWS: !Join [':',['arn:aws:iam:', !Ref AWS::AccountId, 'root']]
+      #       AWS: !GetAtt RecipeNotificationFunctionRole.Arn
+            Action: 'es:*'
+            Resource: !Join [':',["arn:aws:es", !Ref AWS::Region, !Ref AWS::AccountId, "domain/test/*" ]]            
+          - Effect: 'Allow'
+            Principal:
+               AWS: '*'
+            Action: 'es:*'
+            Resource: !Join [':',["arn:aws:es", !Ref AWS::Region, !Ref AWS::AccountId, "domain/test/*" ]]
+            Condition:
+              IpAddress:
+                'aws:SourceIp':
+                   - !Ref IpWhitelist
+#      LogPublishingOptions:
+#        ES_APPLICATION_LOGS:
+#          CloudWatchLogsLogGroupArn: 'arn:aws:logs:us-east-1:123456789012:log-group:/aws/opensearch/domains/opensearch-application-logs'
+#          Enabled: true
+#        SEARCH_SLOW_LOGS:
+#          CloudWatchLogsLogGroupArn: 'arn:aws:logs:us-east-1:123456789012:log-group:/aws/opensearch/domains/opensearch-slow-logs'
+#          Enabled: true
+#        INDEX_SLOW_LOGS:
+#          CloudWatchLogsLogGroupArn: 'arn:aws:logs:us-east-1:123456789012:log-group:/aws/opensearch/domains/opensearch-index-slow-logs'
+#          Enabled: true
 #      AdvancedOptions:
 #        rest.action.multi.allow_explicit_index: true
+#        override_main_response_version: true
 
 Outputs:
   # Find out more about other implicit resources you can reference within SAM

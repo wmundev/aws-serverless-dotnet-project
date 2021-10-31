@@ -1,3 +1,26 @@
+# for env params to sam deploy
+
+create a file called 
+```
+.sam-params
+```
+
+in the root directory here
+
+and add params to it
+
+# To build
+
+```
+sam build
+```
+
+# To deploy
+
+```
+sam deploy --parameter-overrides $(cat .sam-params)
+```
+
 # HelloWorld
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
