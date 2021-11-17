@@ -45,4 +45,5 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"wmundev_aws-serverless-dotnet-project" /o:"wmundev" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           cd src
           dotnet build
+          cd ..
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
