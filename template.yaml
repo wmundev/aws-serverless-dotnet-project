@@ -65,7 +65,7 @@ Resources:
     Properties:
       CodeUri: ./src/HelloWorld/
       Handler: HelloWorld::HelloWorld.Function::FunctionHandler
-      Runtime: dotnetcore3.1
+      Runtime: dotnet6
       MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -83,7 +83,7 @@ Resources:
     Properties:
       CodeUri: ./src/ApiTest/
       Handler: ApiTest::ApiTest.Function::FunctionHandler
-      Runtime: dotnetcore3.1
+      Runtime: dotnet6
       MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -101,7 +101,7 @@ Resources:
     Properties:
       CodeUri: ./src/MFAGenerate/
       Handler: MFAGenerate::MFAGenerate.Function::FunctionHandler
-      Runtime: dotnetcore3.1
+      Runtime: dotnet6
       MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -137,7 +137,7 @@ Resources:
     Properties:
       CodeUri: ./src/RecipeNotification/
       Handler: RecipeNotification::RecipeNotification.Function::FunctionHandler
-      Runtime: dotnetcore3.1
+      Runtime: dotnet6
       MemorySize: 256
       Policies:
         # Give DynamoDB Full Access to your Lambda Function
@@ -160,7 +160,7 @@ Resources:
     Properties:
       CodeUri: ./src/SendEmailCode/
       Handler: SendEmailCode::SendEmailCode.Function::FunctionHandler
-      Runtime: dotnetcore3.1
+      Runtime: dotnet6
       MemorySize: 256
       Timeout: 25
       Policies:
@@ -185,7 +185,7 @@ Resources:
     Properties:
       CodeUri: ./src/CheckCode/
       Handler: CheckCode::CheckCode.Function::FunctionHandler
-      Runtime: dotnetcore3.1
+      Runtime: dotnet6
       MemorySize: 256
       Timeout: 25
       Policies:
