@@ -66,6 +66,8 @@ Resources:
       CodeUri: ./src/HelloWorld/
       Handler: HelloWorld::HelloWorld.Function::FunctionHandler
       Runtime: dotnet6
+      Architectures:
+        - arm64
       MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -84,6 +86,8 @@ Resources:
       CodeUri: ./src/ApiTest/
       Handler: ApiTest::ApiTest.Function::FunctionHandler
       Runtime: dotnet6
+      Architectures:
+        - arm64
       MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -102,6 +106,8 @@ Resources:
       CodeUri: ./src/MFAGenerate/
       Handler: MFAGenerate::MFAGenerate.Function::FunctionHandler
       Runtime: dotnet6
+      Architectures:
+        - arm64
       MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -120,6 +126,8 @@ Resources:
       CodeUri: ./src/GenerateSecurePassword/
       Handler: GenerateSecurePassword::GenerateSecurePassword.Function::FunctionHandler
       Runtime: dotnet6
+      Architectures:
+        - arm64
       MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -138,6 +146,8 @@ Resources:
       CodeUri: ./src/RecipeNotification/
       Handler: RecipeNotification::RecipeNotification.Function::FunctionHandler
       Runtime: dotnet6
+      Architectures:
+        - arm64
       MemorySize: 256
       Policies:
         # Give DynamoDB Full Access to your Lambda Function
@@ -161,6 +171,8 @@ Resources:
       CodeUri: ./src/SendEmailCode/
       Handler: SendEmailCode::SendEmailCode.Function::FunctionHandler
       Runtime: dotnet6
+      Architectures:
+        - arm64
       MemorySize: 256
       Timeout: 25
       Policies:
@@ -186,6 +198,8 @@ Resources:
       CodeUri: ./src/CheckCode/
       Handler: CheckCode::CheckCode.Function::FunctionHandler
       Runtime: dotnet6
+      Architectures:
+        - arm64
       MemorySize: 256
       Timeout: 25
       Policies:
