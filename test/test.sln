@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.Tests", "HelloWorld.Test\HelloWorld.Tests.csproj", "{E3AD3850-0412-409F-A245-9F8A2E6D3452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld.Tests", "HelloWorld.Test\HelloWorld.Tests.csproj", "{E3AD3850-0412-409F-A245-9F8A2E6D3452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateSecurePassword.Tests", "GenerateSecurePassword.Test\GenerateSecurePassword.Tests.csproj", "{C3C464C5-1FCF-483E-9F9D-8EF7795CEA97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenerateSecurePassword.Tests", "GenerateSecurePassword.Test\GenerateSecurePassword.Tests.csproj", "{C3C464C5-1FCF-483E-9F9D-8EF7795CEA97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,21 +1,21 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTest", "ApiTest\ApiTest.csproj", "{F6F9B4A5-A6C8-4A63-A4BC-789AC3BB1325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTest", "ApiTest\ApiTest.csproj", "{F6F9B4A5-A6C8-4A63-A4BC-789AC3BB1325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateSecurePassword", "GenerateSecurePassword\GenerateSecurePassword.csproj", "{3DA3222C-0C9E-410A-B979-72253EEF0AC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenerateSecurePassword", "GenerateSecurePassword\GenerateSecurePassword.csproj", "{3DA3222C-0C9E-410A-B979-72253EEF0AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "HelloWorld\HelloWorld.csproj", "{9E501AB6-4FDA-4E8D-A1B6-0EB3C8F4B42F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld", "HelloWorld\HelloWorld.csproj", "{9E501AB6-4FDA-4E8D-A1B6-0EB3C8F4B42F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFAGenerate", "MFAGenerate\MFAGenerate.csproj", "{45F9B9DC-F78E-4EE8-AEC2-5DF7C33C11EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFAGenerate", "MFAGenerate\MFAGenerate.csproj", "{45F9B9DC-F78E-4EE8-AEC2-5DF7C33C11EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeNotification", "RecipeNotification\RecipeNotification.csproj", "{D5DE6C60-682A-4CAD-A1D2-D33D5DFBFC14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeNotification", "RecipeNotification\RecipeNotification.csproj", "{D5DE6C60-682A-4CAD-A1D2-D33D5DFBFC14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendEmailCode", "SendEmailCode\SendEmailCode.csproj", "{280A327B-62AF-4D89-B559-F777A90965AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendEmailCode", "SendEmailCode\SendEmailCode.csproj", "{280A327B-62AF-4D89-B559-F777A90965AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckCode", "CheckCode\CheckCode.csproj", "{2FCC9529-1FA9-467A-8976-FDF7E7FBB772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckCode", "CheckCode\CheckCode.csproj", "{2FCC9529-1FA9-467A-8976-FDF7E7FBB772}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
