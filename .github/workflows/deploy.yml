@@ -25,4 +25,5 @@ jobs:
       - name: SAM Deploy
         run: |
           sam build > /dev/null 2>&1
+          # > /dev/null 2>&1 is used to suppress the output of the command
           sam deploy > /dev/null 2>&1
