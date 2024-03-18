@@ -20,7 +20,7 @@ namespace HelloWorld.Tests
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Add("User-Agent", "AWS Lambda .Net Client");
 
-            var stringTask = client.GetStringAsync("http://checkip.amazonaws.com/")
+            var stringTask = client.GetStringAsync("https://checkip.amazonaws.com")
                 .ConfigureAwait(continueOnCapturedContext: false);
 
             var msg = await stringTask;
