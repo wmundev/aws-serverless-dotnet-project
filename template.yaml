@@ -54,6 +54,8 @@ Resources:
 
   AccessLogs:
     Type: AWS::Logs::LogGroup
+    Properties: 
+      RetentionInDays: 731
 
   MySqsQueue:
     Type: AWS::SQS::Queue
